@@ -263,3 +263,12 @@ NONE
   "data": []
 }
 ```
+
+#### ERROR MESSAGE
+
+```json
+{
+  "status": "404",
+  "error:": "Error Message:"
+}
+```
