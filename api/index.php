@@ -25,7 +25,6 @@ $controller = null;
 switch ($uri[2]) {
     case 'getAllCategories':
     case 'getPopularCategories':
-    case 'createCategory':
     case 'increaseCategoryViewCount':
         $controller = new Category($dbConnection, $requestMethod, $uri[2]);
         break;
