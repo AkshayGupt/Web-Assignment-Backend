@@ -16,6 +16,9 @@ $uri = explode('/', $uri);
 // Routes are like URL/api/...
 if ($uri[1] !== 'api' || $uri[2] === null) {
     header("HTTP/1.1 404 Not Found");
+    $response["status"] = "404";
+    $response["error"] = "INVALID URL";
+    echo json_encode($response);
     exit();
 }
 
@@ -37,6 +40,9 @@ switch ($uri[2]) {
     default:
         $controller = null;
         header("HTTP/1.1 404 Not Found");
+        $response["status"] = "404";
+        $response["error"] = "INVALID URL";
+        echo json_encode($response);
         exit();
 }
 

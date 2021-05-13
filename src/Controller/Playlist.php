@@ -204,7 +204,7 @@ class Playlist
     private function errorResponse($error)
     {
         $response['status_code_header'] = 'HTTP/1.1 404 Not Found';
-        $response['status'] = '200';
+        $response['status'] = '400';
         $response['error'] = $error;
         header('HTTP/1.1 404 Not Found');
         echo json_encode($response);
