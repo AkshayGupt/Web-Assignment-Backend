@@ -36,6 +36,8 @@ The format of the Endpoint is: `{URL}/api/{func}`. For example, `http://www.exam
 
 ### Sample Input/Output of the API Endpoints
 
+For Error Message format: [Error Message](#error-message-format)
+
 #### getAllCategories
 
 ##### Input
@@ -264,7 +266,7 @@ NONE
 }
 ```
 
-#### ERROR MESSAGE
+#### Error Message Format
 
 ```json
 {
