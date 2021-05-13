@@ -22,10 +22,10 @@ This repository hosts the server side code for Jam, a playlist making website.
 
 ### API Endpoints
 
-|                          Func                          |  Type  | Description                                                                      |
-| :----------------------------------------------------: | :----: | :------------------------------------------------------------------------------- |
-|         [getAllCategories](#getallcategories)          | `GET`  | Fetch all unique categories present in the database ordered by their view count. |
-|     [getPopularCategories](#getpopularcategories)      | `GET`  | Same as _getAllCategories_ except limits the result to 5 entries.                |
+|                          Func                           |  Type  | Description                                                                      |
+| :-----------------------------------------------------: | :----: | :------------------------------------------------------------------------------- |
+|          [getAllCategories](#getallcategories)          | `GET`  | Fetch all unique categories present in the database ordered by their view count. |
+|      [getPopularCategories](#getpopularcategories)      | `GET`  | Same as _getAllCategories_ except limits the result to 5 entries.                |
 |    [getPlaylistsByCategory](#getplaylistsbycategory)    | `GET`  | Fetch all playlists by Category name ordered by their view count.                |
 |           [getPlaylistById](#getplaylistbyid)           | `GET`  | Fetch all the links of a playlist.                                               |
 |            [createPlaylist](#createplaylist)            | `POST` | Create a new playlist.                                                           |
@@ -246,6 +246,8 @@ NONE
 ```
 
 #### increasePlaylistViewCount
+
+##### Input
 
 ```json
 {
