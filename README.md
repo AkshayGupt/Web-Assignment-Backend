@@ -4,7 +4,7 @@ This repository hosts the server side code for Jam, a playlist making website.
 
 ## Getting Started
 
-- Install and run `composer`. This will install the dependencies in a `vendor/` folder.
+- Install and run `composer install`. This will install the dependencies in a `vendor/` folder.
 
 - Create a `.env` file in `vendor/` and copy the ENV schema from `example.env`.
 
