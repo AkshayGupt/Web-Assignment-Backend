@@ -7,7 +7,8 @@ class Database
     private $dbConnection = null;
 
     // Add Category, Playlist and ID tables
-    private function createTables() {
+    private function createTables()
+    {
         $categoryTable = 'CREATE TABLE IF NOT EXISTS categories(
             category_id INT AUTO_INCREMENT,
             category_name VARCHAR(255) UNIQUE NOT NULL,
@@ -19,10 +20,12 @@ class Database
 
         $playlistTable = 'CREATE TABLE IF NOT EXISTS playlists(
             playlist_id INT AUTO_INCREMENT,
+            category_id INT,
             playlist_name VARCHAR(255) NOT NULL,
             playlist_description VARCHAR(255) DEFAULT "",
             playlist_view_count INT DEFAULT 0,
-            PRIMARY KEY (playlist_id)
+            PRIMARY KEY (playlist_id),
+            FOREIGN KEY (category_id) REFERENCES categories (category_id) ON DELETE CASCADE
         )';
         $stmt = $this->dbConnection->prepare($playlistTable);
         $stmt->execute();
@@ -37,14 +40,6 @@ class Database
         $stmt = $this->dbConnection->prepare($playlistLinkTable);
         $stmt->execute();
 
-        $categoryPlaylistTable = 'CREATE TABLE IF NOT EXISTS category_playlist(
-            playlist_id INT,
-            category_id INT,
-            FOREIGN KEY (playlist_id) REFERENCES playlists (playlist_id) ON DELETE CASCADE,
-            FOREIGN KEY (category_id) REFERENCES categories (category_id) On DELETE CASCADE
-        )';
-        $stmt = $this->dbConnection->prepare($categoryPlaylistTable);
-        $stmt->execute();
     }
 
     public function __construct()
