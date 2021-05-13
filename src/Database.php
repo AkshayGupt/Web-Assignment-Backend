@@ -8,11 +8,11 @@ class Database
 
     public function __construct()
     {
-        $host = getenv('DB_HOST');
-        $port = getenv('DB_PORT');
-        $db = getenv('DB_DATABASE');
-        $user = getenv('DB_USERNAME');
-        $pass = getenv('DB_PASSWORD');
+        $host = $_ENV['DB_HOST'];
+        $port = $_ENV['DB_PORT'];
+        $db = $_ENV['DB_DATABASE'];
+        $user = $_ENV['DB_USERNAME'];
+        $pass = $_ENV['DB_PASSWORD'];
 
         try {
             $this->dbConnection = new \PDO(
