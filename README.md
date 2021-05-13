@@ -18,6 +18,10 @@ This repository hosts the server side code for Jam, a playlist making website.
 5. quit
 ```
 
+- To run the API, type `php -S localhost:8008 -t api` in the terminal.
+
+- To run a single file, type `php <filename>.php` in the terminal. (Do this for `start.php` to connect to the database and create the tables)
+
 - VS Code Extensions used: [phpfmt](https://marketplace.visualstudio.com/items?itemName=kokororin.vscode-phpfmt) and [PHP IntelliSense](https://marketplace.visualstudio.com/items?itemName=felixfbecker.php-intellisense)
 
 ### API Endpoints
