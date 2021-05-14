@@ -26,15 +26,13 @@ This repository hosts the server side code for Jam, a playlist making website.
 
 ### API Endpoints
 
-|                          Func                           |  Type  | Description                                                                      |
-| :-----------------------------------------------------: | :----: | :------------------------------------------------------------------------------- |
-|          [getAllCategories](#getallcategories)          | `GET`  | Fetch all unique categories present in the database ordered by their view count. |
-|      [getPopularCategories](#getpopularcategories)      | `GET`  | Same as _getAllCategories_ except limits the result to 5 entries.                |
-|    [getPlaylistsByCategory](#getplaylistsbycategory)    | `GET`  | Fetch all playlists by Category name ordered by their view count.                |
-|           [getPlaylistById](#getplaylistbyid)           | `GET`  | Fetch all the links of a playlist.                                               |
-|            [createPlaylist](#createplaylist)            | `POST` | Create a new playlist.                                                           |
-| [increaseCategoryViewCount](#increasecategoryviewcount) | `PUT`  | Increase a Category's view count by 1.                                           |
-| [increasePlaylistViewCount](#increaseplaylistviewcount) | `PUT`  | Increase a Playlist's view count by 1.                                           |
+|                       Func                        |  Type  | Description                                                                      |
+| :-----------------------------------------------: | :----: | :------------------------------------------------------------------------------- |
+|       [getAllCategories](#getallcategories)       | `GET`  | Fetch all unique categories present in the database ordered by their view count. |
+|   [getPopularCategories](#getpopularcategories)   | `GET`  | Same as _getAllCategories_ except limits the result to 5 entries.                |
+| [getPlaylistsByCategory](#getplaylistsbycategory) | `GET`  | Fetch all playlists by Category name ordered by their view count.                |
+|        [getPlaylistById](#getplaylistbyid)        | `GET`  | Fetch all the links of a playlist.                                               |
+|         [createPlaylist](#createplaylist)         | `POST` | Create a new playlist.                                                           |
 
 The format of the Endpoint is: `{URL}/api/{func}`. For example, `http://www.example.com/api/getAllCategories`
 
@@ -238,44 +236,6 @@ Example: `http://localhost:8008/api/getPlaylistById?playlist_id=5`
 {
   "status": "200",
   "data": "Playlist created successfully!"
-}
-```
-
-#### increaseCategoryViewCount
-
-##### Input
-
-```json
-{
-  "category_id": "1"
-}
-```
-
-##### Output
-
-```json
-{
-  "status": "200",
-  "data": []
-}
-```
-
-#### increasePlaylistViewCount
-
-##### Input
-
-```json
-{
-  "playlist_id": "1"
-}
-```
-
-##### Output
-
-```json
-{
-  "status": "200",
-  "data": []
 }
 ```
 
