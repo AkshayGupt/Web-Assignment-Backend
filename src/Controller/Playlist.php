@@ -129,7 +129,14 @@ class Playlist
     private function createPlaylist()
     {
         $data = (array) json_decode(file_get_contents('php://input'), true);
-        $categoryId = $this->getCategoryId(strtolower($data['category_name']));
+        $categoryName = $data['category_name'];
+
+        if (strlen($categoryName) <= 0) {
+            $this->errorResponse("INVALID PARAMTERS");
+            exit();
+        }
+
+        $categoryId = $this->getCategoryId(strtolower($categoryName));
         $links = (array) $data['links'];
         $currentTime = date("Y-m-d H:i:s");
 
@@ -186,10 +193,12 @@ class Playlist
 
             } catch (\PDOException$e) {
                 $this->errorResponse($e->getMessage());
+                exit();
             }
 
         } else {
             $this->errorResponse("INVALID PARAMETERS");
+            exit();
         }
 
     }

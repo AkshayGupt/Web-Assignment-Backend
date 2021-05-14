@@ -33,7 +33,7 @@ class Database
 
         $playlistLinkTable = 'CREATE TABLE IF NOT EXISTS playlistLink(
             link_id INT AUTO_INCREMENT,
-            link VARCHAR(255) UNIQUE NOT NULL,
+            link VARCHAR(255) NOT NULL,
             title VARCHAR(255) NOT NULL,
             author_name VARCHAR(255) NOT NULL,
             author_url VARCHAR(255) NOT NULL,
