@@ -129,7 +129,14 @@ class Playlist
     private function createPlaylist()
     {
         $data = (array) json_decode(file_get_contents('php://input'), true);
-        $categoryId = $this->getCategoryId($data['category_name']);
+        $categoryId = $this->getCategoryId(strtolower($data['category_name']));
+        $links = (array) $data['links'];
+        $currentTime = date("Y-m-d H:i:s");
+
+        if (!$links || count($links) == 0) {
+            $this->errorResponse("INVALID PARAMETERS");
+            exit();
+        }
 
         if ($data['playlist_name']) {
             $playlistName = $data['playlist_name'];
@@ -143,8 +150,34 @@ class Playlist
                     "category_id" => $categoryId,
                     "playlist_name" => $playlistName,
                     "playlist_description" => $playlistDesc,
+                    "created_at" => $currentTime,
                 ));
+
+                // Get recently created playlist Id
+                $query = Queries::$getPlaylist;
+                $stmt = $this->db->prepare($query);
+                $stmt->execute(array(
+                    "playlist_name" => $playlistName,
+                    "category_id" => $categoryId,
+                    "created_at" => $currentTime,
+                ));
+
+                $result = $stmt->fetchAll(\PDO::FETCH_ASSOC)[0];
+
+                $playlistId = (int) $result['playlist_id'];
+
+                // Add links to the database
+                $query = Queries::$addLinks;
+                foreach ($links as $link) {
+                    $stmt = $this->db->prepare($query);
+                    $stmt->execute(array(
+                        "playlist_id" => $playlistId,
+                        "link" => $link,
+                    ));
+                }
+
                 $this->successResponse("Playlist created successfully!");
+
             } catch (\PDOException$e) {
                 $this->errorResponse($e->getMessage());
             }
@@ -203,7 +236,6 @@ class Playlist
     // 404 Not Found Response
     private function errorResponse($error)
     {
-        $response['status_code_header'] = 'HTTP/1.1 404 Not Found';
         $response['status'] = '400';
         $response['error'] = $error;
         header('HTTP/1.1 404 Not Found');

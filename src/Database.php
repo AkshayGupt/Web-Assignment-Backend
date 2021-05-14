@@ -24,6 +24,7 @@ class Database
             playlist_name VARCHAR(255) NOT NULL,
             playlist_description VARCHAR(255) DEFAULT "",
             playlist_view_count INT DEFAULT 0,
+            created_at TIMESTAMP NOT NULL,
             PRIMARY KEY (playlist_id),
             FOREIGN KEY (category_id) REFERENCES categories (category_id) ON DELETE CASCADE
         )';
