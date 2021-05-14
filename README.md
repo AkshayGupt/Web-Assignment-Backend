@@ -183,7 +183,7 @@ NONE
 
 ```json
 {
-  "playlist_id": "1"
+  "playlist_id": "5"
 }
 ```
 
@@ -194,16 +194,24 @@ NONE
   "status": "200",
   "data": [
     {
-      "link_id": "1",
-      "link": "Link 1",
-      "playlist_id": "1",
-      "playlist_name": "Playlist 1"
+      "link_id": "3",
+      "link": "https://www.youtube.com/watch?v=K4DyBUG242c",
+      "title": "Cartoon - On & On (feat. Daniel Levi) [NCS Release]",
+      "author_name": "NoCopyrightSounds",
+      "author_url": "https://www.youtube.com/c/NoCopyrightSounds",
+      "thumbnail_url": "https://i.ytimg.com/vi/K4DyBUG242c/hqdefault.jpg",
+      "playlist_id": "5",
+      "playlist_name": "NCS"
     },
     {
-      "link_id": "2",
-      "link": "Link 2",
-      "playlist_id": "1",
-      "playlist_name": "Playlist 1"
+      "link_id": "4",
+      "link": "https://www.youtube.com/watch?v=JNl1_hRwpXE",
+      "title": "NCS: 30 Million Subscriber Mix",
+      "author_name": "NoCopyrightSounds",
+      "author_url": "https://www.youtube.com/c/NoCopyrightSounds",
+      "thumbnail_url": "https://i.ytimg.com/vi/JNl1_hRwpXE/hqdefault.jpg",
+      "playlist_id": "5",
+      "playlist_name": "NCS"
     }
   ]
 }
