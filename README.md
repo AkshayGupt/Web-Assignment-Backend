@@ -145,11 +145,11 @@ NONE
 
 ##### Input
 
-```json
-{
-  "category_name": "music"
-}
+```text
+{URL}/api/getPlaylistsByCategory?category_name=<enter_category_name>
 ```
+
+Example: `http://localhost:8008/api/getPlaylistsByCategory?category_name=music`
 
 ##### Output
 
@@ -181,11 +181,11 @@ NONE
 
 ##### Input
 
-```json
-{
-  "playlist_id": "5"
-}
+```text
+{URL}/api/getPlaylistById?playlist_id=<enter_playlist_id>
 ```
+
+Example: `http://localhost:8008/api/getPlaylistById?playlist_id=5`
 
 ##### Output
 
