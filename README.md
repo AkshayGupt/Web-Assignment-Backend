@@ -219,7 +219,8 @@ NONE
 {
   "playlist_name": "Random Playlist",
   "playlist_description": "Playlist Description",
-  "category_name": "music"
+  "category_name": "music",
+  "links": ["link 1", "link2", "link3"]
 }
 ```
 
