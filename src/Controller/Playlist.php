@@ -168,11 +168,17 @@ class Playlist
 
                 // Add links to the database
                 $query = Queries::$addLinks;
+                $stmt = $this->db->prepare($query);
                 foreach ($links as $link) {
-                    $stmt = $this->db->prepare($query);
+                    $linkMetadata = Queries::getLinkData($link);
+
                     $stmt->execute(array(
                         "playlist_id" => $playlistId,
                         "link" => $link,
+                        "title" => $linkMetadata['title'],
+                        "author_name" => $linkMetadata['author_name'],
+                        "author_url" => $linkMetadata['author_url'],
+                        "thumbnail_url" => $linkMetadata['thumbnail_url'],
                     ));
                 }
 

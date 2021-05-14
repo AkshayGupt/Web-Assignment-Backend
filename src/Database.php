@@ -34,6 +34,10 @@ class Database
         $playlistLinkTable = 'CREATE TABLE IF NOT EXISTS playlistLink(
             link_id INT AUTO_INCREMENT,
             link VARCHAR(255) UNIQUE NOT NULL,
+            title VARCHAR(255) NOT NULL,
+            author_name VARCHAR(255) NOT NULL,
+            author_url VARCHAR(255) NOT NULL,
+            thumbnail_url VARCHAR(255) NOT NULL,
             playlist_id INT,
             PRIMARY KEY (link_id),
             FOREIGN KEY (playlist_id) REFERENCES playlists (playlist_id) ON DELETE CASCADE

@@ -20,9 +20,60 @@ class Queries
 
     public static $createPlaylist = "INSERT INTO playlists (playlist_id, category_id, playlist_name, playlist_description, playlist_view_count, created_at)
                                     VALUES (NULL, :category_id, :playlist_name, :playlist_description, 0, :created_at)";
-    
+
     public static $getPlaylist = "SELECT playlist_id FROM playlists WHERE playlist_name = :playlist_name and category_id = :category_id and created_at = :created_at";
 
-    public static $addLinks = "INSERT INTO playlistlink (link_id, playlist_id, link) VALUES (NULL, :playlist_id, :link)";
-}
+    public static $addLinks = "INSERT INTO playlistlink (link_id, playlist_id, link, title, author_name, author_url, thumbnail_url) 
+                                VALUES (NULL, :playlist_id, :link, :title, :author_name, :author_url, :thumbnail_url)";
 
+    /**
+     * Parse and retreive metadata from a URL
+     * @param string $link
+     * @return array Array containing title, author_name, author_url nad thumbnail_url
+     */
+    public static function getLinkData($link)
+    {
+        $url = "https://www.youtube.com/oembed?url=http://www.youtube.com/watch?v=:id&format=json";
+        $id = Queries::getYoutubeIdFromUrl($link);
+        $url = str_replace(":id", $id, $url);
+
+        $options = array(
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_SSL_VERIFYPEER => false,
+        );
+
+        $curl = curl_init($url);
+        curl_setopt_array($curl, $options);
+
+        $content = json_decode(curl_exec($curl));
+        $result['title'] = $content->title;
+        $result['author_name'] = $content->author_name;
+        $result['author_url'] = $content->author_url;
+        $result['thumbnail_url'] = $content->thumbnail_url;
+        return $result;
+    }
+
+    /**
+     * Get Youtube video ID from URL
+     *
+     * @param string $url
+     * @return mixed Youtube video ID or FALSE if not found
+     */
+    private static function getYoutubeIdFromUrl($url)
+    {
+        $parts = parse_url($url);
+        if (isset($parts['query'])) {
+            parse_str($parts['query'], $qs);
+            if (isset($qs['v'])) {
+                return $qs['v'];
+            } else if (isset($qs['vi'])) {
+                return $qs['vi'];
+            }
+        }
+        if (isset($parts['path'])) {
+            $path = explode('/', trim($parts['path'], '/'));
+            return $path[count($path) - 1];
+        }
+        return false;
+    }
+}
