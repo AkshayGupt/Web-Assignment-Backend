@@ -41,13 +41,11 @@ $controller = null;
 switch ($uri[2]) {
     case 'getAllCategories':
     case 'getPopularCategories':
-    case 'increaseCategoryViewCount':
         $controller = new Category($dbConnection, $requestMethod, $uri[2]);
         break;
     case 'getPlaylistsByCategory':
     case 'getPlaylistById':
     case 'createPlaylist':
-    case 'increasePlaylistViewCount':
         $controller = new Playlist($dbConnection, $requestMethod, $uri[2]);
         break;
     default:

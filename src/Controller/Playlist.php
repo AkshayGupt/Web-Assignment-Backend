@@ -73,6 +73,7 @@ class Playlist
             $stmt->execute(array($name));
 
             $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            $this->increaseCategoryViewCount($name);
 
             $this->successResponse($result);
         } catch (\PDOException$e) {
@@ -93,6 +94,7 @@ class Playlist
             $stmt->execute(array($id));
 
             $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            $this->increasePlaylistViewCount($id);
 
             $this->successResponse($result);
         } catch (\PDOException$e) {
@@ -104,21 +106,35 @@ class Playlist
      * Increase the View Count playlist by 1.
      * Playlist identified by [playlist_id]
      */
-    private function increasePlaylistViewCount()
+    private function increasePlaylistViewCount($playlist_id)
     {
-        $data = (array) json_decode(file_get_contents('php://input'), true);
         $query = Queries::$increasePlaylistViewCount;
 
         try {
-            $id = (int) $data['playlist_id'];
+            $id = (int) $playlist_id;
             $stmt = $this->db->prepare($query);
             $stmt->execute(array($id));
-
-            $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-
-            $this->successResponse($result);
+            return;
         } catch (\PDOException$e) {
-            $this->errorResponse($e->getMessage());
+            return;
+        }
+    }
+
+    /**
+     * Increase the View Count category by 1.
+     * Category identified by [category_name]
+     */
+    private function increaseCategoryViewCount($category_name)
+    {
+        $query = Queries::$increaseCategoryViewCount;
+
+        try {
+
+            $stmt = $this->db->prepare($query);
+            $stmt->execute(array(strtolower($category_name)));
+            return;
+        } catch (\PDOException$e) {
+            return;
         }
     }
 

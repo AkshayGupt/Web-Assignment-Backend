@@ -84,28 +84,6 @@ class Category
         }
     }
 
-    /**
-     * Increase the View Count category by 1.
-     * Category identified by [category_id]
-     */
-    private function increaseCategoryViewCount()
-    {
-        $data = (array) json_decode(file_get_contents('php://input'), true);
-        $query = Queries::$increaseCategoryViewCount;
-
-        try {
-            $id = (int) $data['category_id'];
-            $stmt = $this->db->prepare($query);
-            $stmt->execute(array($id));
-
-            $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-
-            $this->successResponse($result);
-        } catch (\PDOException$e) {
-            $this->errorResponse($e->getMessage());
-        }
-    }
-
     // 200 OK response
     private function successResponse($body)
     {

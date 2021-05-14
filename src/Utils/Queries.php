@@ -13,7 +13,7 @@ class Queries
                                         WHERE R.playlist_id = PL.playlist_id";
 
     public static $increasePlaylistViewCount = "UPDATE playlists SET playlist_view_count = playlist_view_count + 1 WHERE playlist_id = ?";
-    public static $increaseCategoryViewCount = "UPDATE categories SET category_view_count = category_view_count + 1 WHERE category_id = ?";
+    public static $increaseCategoryViewCount = "UPDATE categories SET category_view_count = category_view_count + 1 WHERE category_name = ?";
 
     public static $createCategory = "INSERT INTO categories (category_id, category_name, category_view_count) VALUES (NULL, ?, 0)";
     public static $getCategoryId = "SELECT category_id FROM categories WHERE category_name = ?";
