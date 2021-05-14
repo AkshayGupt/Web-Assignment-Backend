@@ -64,8 +64,8 @@ class Playlist
      */
     private function getPlaylistsByCategory()
     {
-        $data = (array) json_decode(file_get_contents('php://input'), true);
-        $name = strtolower($data['category_name']);
+
+        $name = strtolower($_GET['category_name']);
 
         $query = Queries::$getPlaylistsByCategory;
         try {
@@ -85,11 +85,10 @@ class Playlist
      */
     private function getPlaylistById()
     {
-        $data = (array) json_decode(file_get_contents('php://input'), true);
         $query = Queries::$getPlaylistById;
 
         try {
-            $id = (int) $data['playlist_id'];
+            $id = (int) $_GET['playlist_id'];
             $stmt = $this->db->prepare($query);
             $stmt->execute(array($id));
 
