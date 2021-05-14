@@ -44,16 +44,6 @@ class Playlist
                         break;
                 }
                 break;
-            case 'PUT':
-                switch ($this->func) {
-                    case 'increasePlaylistViewCount':
-                        $this->increasePlaylistViewCount();
-                        break;
-                    default:
-                        $this->errorResponse("INVALID URL");
-                        break;
-                }
-                break;
             default:
                 $this->errorResponse("INVALID URL");
         }
@@ -147,7 +137,7 @@ class Playlist
         $categoryName = $data['category_name'];
 
         if (strlen($categoryName) <= 0) {
-            $this->errorResponse("INVALID PARAMTERS");
+            $this->errorResponse("INVALID PARAMETERS");
             exit();
         }
 

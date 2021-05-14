@@ -33,16 +33,6 @@ class Category
                         break;
                 }
                 break;
-            case 'PUT':
-                switch ($this->func) {
-                    case 'increaseCategoryViewCount':
-                        $this->increaseCategoryViewCount();
-                        break;
-                    default:
-                        $this->errorResponse("INVALID URL");
-                        break;
-                }
-                break;
             default:
                 $this->errorResponse("INVALID URL");
         }

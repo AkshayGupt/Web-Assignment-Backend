@@ -23,7 +23,7 @@ class Queries
 
     public static $getPlaylist = "SELECT playlist_id FROM playlists WHERE playlist_name = :playlist_name and category_id = :category_id and created_at = :created_at";
 
-    public static $addLinks = "INSERT INTO playlistlink (link_id, playlist_id, link, title, author_name, author_url, thumbnail_url) 
+    public static $addLinks = "INSERT INTO playlistlink (link_id, playlist_id, link, title, author_name, author_url, thumbnail_url)
                                 VALUES (NULL, :playlist_id, :link, :title, :author_name, :author_url, :thumbnail_url)";
 
     /**
